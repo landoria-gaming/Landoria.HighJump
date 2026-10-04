@@ -11,3 +11,7 @@ Made in [VS Code](https://code.visualstudio.com/) with
 [Valheim AI Skill](https://github.com/landoria-gaming/ValheimAISkill).
 Watch the [full recording](https://youtu.be/2-PucHKb1Cc) of this mod being
 created from start to finish.
+
+## Contact
+
+Report bugs or request features on [GitHub Issues](https://github.com/landoria-gaming/Landoria.HighJump/issues).
