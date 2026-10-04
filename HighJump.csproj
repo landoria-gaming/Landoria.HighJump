@@ -33,24 +33,12 @@
       <HintPath>$(ValheimManagedPath)/assembly_valheim.dll</HintPath>
       <Private>false</Private>
     </Reference>
-    <Reference Include="assembly_utils">
-      <HintPath>$(ValheimManagedPath)/assembly_utils.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="assembly_guiutils">
-      <HintPath>$(ValheimManagedPath)/assembly_guiutils.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>$(ValheimManagedPath)/UnityEngine.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(ValheimManagedPath)/UnityEngine.CoreModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>$(ValheimManagedPath)/UnityEngine.PhysicsModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>

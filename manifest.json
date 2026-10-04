@@ -1,8 +1,8 @@
 {
   "name": "HighJump",
-  "version_number": "1.0.1",
+  "version_number": "1.0.2",
   "website_url": "https://github.com/landoria-gaming/Landoria.HighJump",
-  "description": "A configurable client-side jump height multiplier.",
+  "description": "Allow your viking to jump higher when you sprint.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2351"
   ],

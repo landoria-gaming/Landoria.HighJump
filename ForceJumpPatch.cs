@@ -2,16 +2,16 @@ using HarmonyLib;
 
 namespace HighJump
 {
-    // Detects a real launch made by the local boosted jump call.
+    // Detects the first sprint jump after Valheim launches it.
     [HarmonyPatch(typeof(Character), nameof(Character.ForceJump))]
     internal static class ForceJumpPatch
     {
-        // Starts the boosted arc after Valheim applies its jump velocity.
+        // Records the first jump speed for the midair jump.
         private static void Postfix(Character __instance)
         {
-            if (JumpPatch.BoostingJumpCall && __instance == Player.m_localPlayer)
+            if (JumpPatch.SprintJumpCall && __instance == Player.m_localPlayer)
             {
-                JumpPatch.StartBoostedArc(__instance);
+                JumpPatch.StartJump(__instance);
             }
         }
     }

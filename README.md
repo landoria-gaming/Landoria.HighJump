@@ -1,10 +1,10 @@
 # HighJump
 
-Jump higher. Mind the landing.
+Allow your viking to jump higher when you sprint
 
-HighJump gives your Viking a configurable jump boost while sprinting: roughly twice
-the height by default, adjustable up to four times. Other jumps stay vanilla. It
-runs on your client, so your friends and server can stay vanilla.
+Sprint and jump, then press jump again while rising for a second jump from your
+current position. HighJump runs on your client, so your friends and server can stay
+vanilla and they will see you doing a high jump.
 
 ## Agentic Development
 

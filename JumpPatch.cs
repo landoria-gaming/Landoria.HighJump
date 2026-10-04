@@ -1,50 +1,88 @@
 using HarmonyLib;
+using UnityEngine;
 
 namespace HighJump
 {
-    // Scales local jump force and tracks the boosted jump arc.
+    // Allows one normal midair jump after a sprint jump.
     [HarmonyPatch(typeof(Character), nameof(Character.Jump), new[] { typeof(bool) })]
     internal static class JumpPatch
     {
-        internal static bool BoostingJumpCall { get; private set; }
-        internal static float ActiveHeightMultiplier { get; private set; } = 1f;
-        internal static Character ActiveCharacter { get; private set; }
+        internal static bool SprintJumpCall { get; private set; }
+        private static Character _activeCharacter;
+        private static float _launchSpeed;
+        private static bool _secondJumpUsed;
 
-        // Scales takeoff speed to match the faster gravity of the boosted arc.
-        private static void Prefix(Character __instance, out float __state)
+        // Records a sprint jump or launches its second jump during ascent.
+        private static bool Prefix(Character __instance)
         {
-            __state = __instance.m_jumpForce;
-            var settings = Plugin.Settings;
-            if (settings == null || !settings.Enabled.Value || __instance != Player.m_localPlayer
-                || !__instance.IsRunning())
+            if (__instance != Player.m_localPlayer)
             {
-                return;
+                return true;
             }
 
-            BoostingJumpCall = true;
-            __instance.m_jumpForce *= settings.HeightMultiplier.Value;
+            if (__instance.IsDead())
+            {
+                ResetJump();
+                return true;
+            }
+
+            if (__instance.IsOnGround())
+            {
+                ResetJump();
+                SprintJumpCall = __instance.IsRunning();
+                return true;
+            }
+
+            return !TrySecondJump(__instance);
         }
 
-        // Restores the original force and call state even if a patch throws.
-        private static System.Exception Finalizer(Character __instance, float __state, System.Exception __exception)
+        // Clears the call marker even if Valheim or another patch throws.
+        private static System.Exception Finalizer(System.Exception __exception)
         {
-            __instance.m_jumpForce = __state;
-            BoostingJumpCall = false;
+            SprintJumpCall = false;
             return __exception;
         }
 
-        // Starts the faster arc only after Valheim actually launches a boosted jump.
-        internal static void StartBoostedArc(Character character)
+        // Remembers the speed of a real sprint jump after Valheim launches it.
+        internal static void StartJump(Character character)
         {
-            ActiveCharacter = character;
-            ActiveHeightMultiplier = Plugin.Settings.HeightMultiplier.Value;
+            _activeCharacter = character;
+            _launchSpeed = character.GetVelocity().y;
+            _secondJumpUsed = false;
         }
 
-        // Ends the boosted arc when the player lands or the plugin shuts down.
-        internal static void StopBoostedArc()
+        // Clears the jump allowance for the next sprint jump.
+        private static void ResetJump()
         {
-            ActiveCharacter = null;
-            ActiveHeightMultiplier = 1f;
+            _activeCharacter = null;
+            _launchSpeed = 0f;
+            _secondJumpUsed = false;
+        }
+
+        // Launches a normal-strength second jump from the current position.
+        private static bool TrySecondJump(Character character)
+        {
+            if (character != _activeCharacter || _secondJumpUsed || _launchSpeed <= 0f
+                || character.IsSwimming() || character.IsAttached() || character.IsDebugFlying())
+            {
+                return false;
+            }
+
+            Vector3 velocity = character.GetVelocity();
+            if (velocity.y <= 0f)
+            {
+                return false;
+            }
+
+            _secondJumpUsed = true;
+            velocity.y = _launchSpeed;
+            if (!character.HaveStamina(character.m_jumpStaminaUsage))
+            {
+                velocity *= character.m_jumpForceTiredFactor;
+            }
+
+            character.ForceJump(velocity);
+            return true;
         }
     }
 }
