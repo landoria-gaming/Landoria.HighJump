@@ -9,4 +9,5 @@ server can stay vanilla.
 Made in [VS Code](https://code.visualstudio.com/) with
 [Codex](https://learn.chatgpt.com/docs/codex/ide) and the
 [Valheim AI Skill](https://github.com/landoria-gaming/ValheimAISkill).
-Watch the [recorded video](https://youtu.be/2-PucHKb1Cc).
+Watch the [full recording](https://youtu.be/2-PucHKb1Cc) of this mod being
+created from start to finish.
