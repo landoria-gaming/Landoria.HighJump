@@ -1,13 +1,16 @@
 using HarmonyLib;
-using UnityEngine;
 
 namespace HighJump
 {
-    // Temporarily scales jump force only for the local player.
+    // Scales local jump force and tracks the boosted jump arc.
     [HarmonyPatch(typeof(Character), nameof(Character.Jump), new[] { typeof(bool) })]
     internal static class JumpPatch
     {
-        // Scales launch speed by the square root of the desired height ratio.
+        internal static bool BoostingJumpCall { get; private set; }
+        internal static float ActiveHeightMultiplier { get; private set; } = 1f;
+        internal static Character ActiveCharacter { get; private set; }
+
+        // Scales takeoff speed to match the faster gravity of the boosted arc.
         private static void Prefix(Character __instance, out float __state)
         {
             __state = __instance.m_jumpForce;
@@ -17,14 +20,30 @@ namespace HighJump
                 return;
             }
 
-            __instance.m_jumpForce *= Mathf.Sqrt(settings.HeightMultiplier.Value);
+            BoostingJumpCall = true;
+            __instance.m_jumpForce *= settings.HeightMultiplier.Value;
         }
 
-        // Restores the original force even if another jump patch throws.
+        // Restores the original force and call state even if a patch throws.
         private static System.Exception Finalizer(Character __instance, float __state, System.Exception __exception)
         {
             __instance.m_jumpForce = __state;
+            BoostingJumpCall = false;
             return __exception;
+        }
+
+        // Starts the faster arc only after Valheim actually launches a boosted jump.
+        internal static void StartBoostedArc(Character character)
+        {
+            ActiveCharacter = character;
+            ActiveHeightMultiplier = Plugin.Settings.HeightMultiplier.Value;
+        }
+
+        // Ends the boosted arc when the player lands or the plugin shuts down.
+        internal static void StopBoostedArc()
+        {
+            ActiveCharacter = null;
+            ActiveHeightMultiplier = 1f;
         }
     }
 }
