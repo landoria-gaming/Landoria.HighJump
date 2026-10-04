@@ -9,7 +9,7 @@ namespace HighJump
     {
         public const string PluginGuid = "HighJump";
         public const string PluginName = "HighJump";
-        public const string PluginVersion = "1.0.0";
+        public const string PluginVersion = "1.0.1";
         internal static ModConfigFile Settings;
         private Harmony _harmony;
 
