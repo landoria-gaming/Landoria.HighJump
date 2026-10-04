@@ -15,7 +15,8 @@ namespace HighJump
         {
             __state = __instance.m_jumpForce;
             var settings = Plugin.Settings;
-            if (settings == null || !settings.Enabled.Value || __instance != Player.m_localPlayer)
+            if (settings == null || !settings.Enabled.Value || __instance != Player.m_localPlayer
+                || !__instance.IsRunning())
             {
                 return;
             }
