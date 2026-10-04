@@ -6,9 +6,10 @@ HighJump gives your Viking a configurable jump boost: roughly twice the height b
 default, adjustable up to four times. It runs on your client, so your friends and
 server can stay vanilla.
 
-Made in [VS Code](https://code.visualstudio.com/) with
-[Codex](https://learn.chatgpt.com/docs/codex/ide) and the
-[Valheim AI Skill](https://github.com/landoria-gaming/ValheimAISkill).
+Made with the [Valheim AI Skill](https://github.com/landoria-gaming/ValheimAISkill)
+in [VS Code](https://code.visualstudio.com/) with
+[Codex](https://learn.chatgpt.com/docs/codex/ide).
+
 Watch the [full recording](https://youtu.be/2-PucHKb1Cc) of this mod being
 created from start to finish.
 
