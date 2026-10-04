@@ -5,5 +5,11 @@
   "description": "A configurable client-side jump height multiplier.",
   "dependencies": [
     "denikson-BepInExPack_Valheim-5.4.2351"
+  ],
+  "categories": [
+    "ai-generated",
+    "mods",
+    "client-side",
+    "tweaks"
   ]
 }
