@@ -1,6 +1,6 @@
 using HarmonyLib;
 
-namespace HighJump
+namespace Landoria.HighJump
 {
     // Detects the first sprint jump after Valheim launches it.
     [HarmonyPatch(typeof(Character), nameof(Character.ForceJump))]

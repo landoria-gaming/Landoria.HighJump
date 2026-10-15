@@ -1,7 +1,7 @@
 using HarmonyLib;
 using UnityEngine;
 
-namespace HighJump
+namespace Landoria.HighJump
 {
     // Allows one normal midair jump after a sprint jump.
     [HarmonyPatch(typeof(Character), nameof(Character.Jump), new[] { typeof(bool) })]

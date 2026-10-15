@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Updated readme
+
 ## 1.0.2
 
 - Added a second normal jump during ascent after a sprint jump.

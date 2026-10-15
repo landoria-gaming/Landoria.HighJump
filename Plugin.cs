@@ -1,15 +1,15 @@
 using BepInEx;
 using HarmonyLib;
 
-namespace HighJump
+namespace Landoria.HighJump
 {
     // Owns the jump patch lifecycle.
     [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
     public sealed class Plugin : BaseUnityPlugin
     {
-        public const string PluginGuid = "HighJump";
-        public const string PluginName = "HighJump";
-        public const string PluginVersion = "1.0.3";
+        public const string PluginGuid = "Landoria.HighJump";
+        public const string PluginName = "Landoria.HighJump";
+        public const string PluginVersion = "1.0.4";
         private Harmony _harmony;
 
         // Installs the local jump patch.
