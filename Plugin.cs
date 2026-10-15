@@ -9,7 +9,7 @@ namespace HighJump
     {
         public const string PluginGuid = "HighJump";
         public const string PluginName = "HighJump";
-        public const string PluginVersion = "1.0.2";
+        public const string PluginVersion = "1.0.3";
         private Harmony _harmony;
 
         // Installs the local jump patch.
