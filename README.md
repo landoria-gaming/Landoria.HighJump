@@ -4,7 +4,7 @@ When you’re running at full speed, a double jump will send you twice as high.
 
 ## Preview
 
-![HighJump gameplay](https://raw.githubusercontent.com/landoria-gaming/Landoria.HighJump/refs/heads/main/assets/HighJump.gif)
+<img src="https://raw.githubusercontent.com/landoria-gaming/Landoria.HighJump/refs/heads/main/assets/HighJump.gif" alt="HighJump gameplay" width="640">
 
 ## Contact
 
