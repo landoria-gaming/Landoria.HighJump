@@ -9,7 +9,7 @@ namespace Landoria.HighJump
     {
         public const string PluginGuid = "Landoria.HighJump";
         public const string PluginName = "Landoria.HighJump";
-        public const string PluginVersion = "1.0.4";
+        public const string PluginVersion = "1.0.5";
         private Harmony _harmony;
 
         // Installs the local jump patch.
